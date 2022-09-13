@@ -2,7 +2,7 @@ package sammancoaching;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class PersonTest {
     String swedishPersonalNumber = "19511111-7668";
@@ -23,22 +23,22 @@ class PersonTest {
     @Test
     void managersCanDeleteUsers() {
         Person person = new Person(role, swedishPersonalNumber, phoneNumber);
-        assertEquals(true, person.canDeleteUsers());
+        assertTrue(person.canDeleteUsers());
     }
     @Test
     void adminCanDeleteUsers() {
         Person person = new Person(Person.USER_ROLE_ADMIN, swedishPersonalNumber, phoneNumber);
-        assertEquals(true, person.canDeleteUsers());
+        assertTrue(person.canDeleteUsers());
     }
     @Test
     void salesCantDeleteUsers() {
         Person person = new Person(Person.USER_ROLE_SALES, swedishPersonalNumber, phoneNumber);
-        assertEquals(false, person.canDeleteUsers());
+        assertFalse(person.canDeleteUsers());
     }
     @Test
     void engineersCantDeleteUsers() {
         Person person = new Person(Person.USER_ROLE_ENGINEER, swedishPersonalNumber, phoneNumber);
-        assertEquals(false, person.canDeleteUsers());
+        assertFalse(person.canDeleteUsers());
     }
 
     @Test
