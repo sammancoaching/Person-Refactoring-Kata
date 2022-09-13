@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class PersonTest {
+class PersonTest {
     String swedishPersonalNumber = "19511111-7668";
     int role = Person.USER_ROLE_MANAGER;
     String phoneNumber = "00467123456";
