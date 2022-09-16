@@ -61,7 +61,7 @@ public class DataProcessorTest
     [Test]
     public void NorwegianRecord()
     {
-        phoneNumber = "00451234664634";
+        phoneNumber = "+451234664634";
         role = PersonRecord.USER_ROLE_ENGINEER;
         var record = _dataProcessor.processRecord(swedishPersonalNumber, phoneNumber, role);
         Assert.AreEqual(swedishPersonalNumber, record.SwedishPersonalNumber);
