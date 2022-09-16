@@ -16,6 +16,9 @@ public class DataProcessor
         PersonUtil.ValidatePersonalNumber(personalNumber);
         PersonUtil.ValidatePhoneNumber(phoneNumber);
         PersonUtil.ValidateRole(role);
+        var record = new PersonRecord(role, personalNumber, phoneNumber);
+        
+        // store some statistics about the records we process
         if (PersonUtil.BirthYear(personalNumber) < 1945)
         {
             // Person is retired
@@ -33,7 +36,7 @@ public class DataProcessor
             // person is priviledged
             _priviledgedCounter++;
         }
-            
-        return new PersonRecord(role, personalNumber, phoneNumber);
+
+        return record;
     }
 }
