@@ -26,8 +26,8 @@ Person* Person_create(int role, char* personalNumber, char* phoneNumber);
 int
 birthYear(struct Person* person);
 
-char*
-countryCode(struct Person* person);
+void
+countryCode(struct Person* person, char* code);
 
 bool
 canDeleteUsers(struct Person* person);

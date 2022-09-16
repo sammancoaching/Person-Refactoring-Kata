@@ -10,9 +10,10 @@ using namespace std;
 
 TEST_CASE ("Person") {
 
-    string swedishPersonalNumber = "19511111-7668";
-    int role = USER_ROLE_MANAGER;
-    string phoneNumber = "00467123456";
+    char* swedishPersonalNumber = "19511111-7668";
+    ROLES role = USER_ROLE_MANAGER;
+    char* phoneNumber = "00467123456";
+    char code[4];
 
     SECTION("birthYear") {
         auto person = Person_create(role, swedishPersonalNumber, phoneNumber);
@@ -20,17 +21,20 @@ TEST_CASE ("Person") {
     }
     SECTION("countryCode leading zeros") {
         auto person = Person_create(role, swedishPersonalNumber, phoneNumber);
-        REQUIRE("+46" == string(countryCode(person)));
+        countryCode(person, code);
+        REQUIRE("+46" == string(code));
     }
     SECTION("countryCode plus sign") {
         char* phoneNumber = "+467123456";
         auto person = Person_create(role, swedishPersonalNumber, phoneNumber);
-        REQUIRE("+46" == string(countryCode(person)));
+        countryCode(person, code);
+        REQUIRE("+46" == string(code));
     }
     SECTION("countryCode local number") {
         char* phoneNumber = "07123456";
         auto person = Person_create(role, swedishPersonalNumber, phoneNumber);
-        REQUIRE("" == string(countryCode(person)));
+        countryCode(person, code);
+        REQUIRE(string(code) == "");
     }
     SECTION("managers can delete users") {
         auto person = Person_create(role, swedishPersonalNumber, phoneNumber);
