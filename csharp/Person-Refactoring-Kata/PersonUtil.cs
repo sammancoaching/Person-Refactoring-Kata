@@ -11,14 +11,6 @@ public class PersonUtil
             throw new ArgumentOutOfRangeException( "personalNumber","a personal number should have length 12");
         return true;
     }
-    
-    public static int BirthYear(string swedishPersonalNumber)
-    {
-        var year = swedishPersonalNumber.Substring(0, 4);
-        int result = 0;
-        int.TryParse(year, out result);
-        return result;
-    }
 
     public static bool ValidatePhoneNumber(string value)
     {
@@ -32,6 +24,14 @@ public class PersonUtil
         if (value < 0 || value > 4) 
             throw new ArgumentOutOfRangeException("role", "valid role is between 0..3");
         return true;
+    }
+
+    public static int BirthYear(string swedishPersonalNumber)
+    {
+        var year = swedishPersonalNumber.Substring(0, 4);
+        int result = 0;
+        int.TryParse(year, out result);
+        return result;
     }
 
     public static string CountryCode(string phoneNumber)
