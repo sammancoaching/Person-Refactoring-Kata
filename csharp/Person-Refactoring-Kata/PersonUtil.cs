@@ -4,24 +4,24 @@ namespace Person_Refactoring_Kata;
 
 public class PersonUtil
 {
-    public static bool ValidatePersonalNumber(string value)
+    public static bool ValidatePersonalNumber(string swedishPersonalNumber)
     {
-        var pn = value.Replace("-", "");
+        var pn = swedishPersonalNumber.Replace("-", "");
         if (pn.Length != 12)
             throw new ArgumentOutOfRangeException( "personalNumber","a personal number should have length 12");
         return true;
     }
 
-    public static bool ValidatePhoneNumber(string value)
+    public static bool ValidatePhoneNumber(string phoneNumber)
     {
-        if (value.StartsWith("+") || value.StartsWith("0"))
+        if (phoneNumber.StartsWith("+") || phoneNumber.StartsWith("0"))
             return true;
         throw new ArgumentException("phonenumber must begin with + or 0");
     }
 
-    public static bool ValidateRole(int value)
+    public static bool ValidateRole(int role)
     {
-        if (value < 0 || value > 4) 
+        if (role < 0 || role > 4) 
             throw new ArgumentOutOfRangeException("role", "valid role is between 0..3");
         return true;
     }
