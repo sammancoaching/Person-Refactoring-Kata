@@ -6,7 +6,7 @@
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=b6ba877f_002D2378_002D469d_002Db083_002D898634c4ed98/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="PersonTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
-    &lt;TestId&gt;NUnit3x::A70975C5-9D55-4AFA-BDD1-B7838C628011::net6.0::Person_Refactoring_Kata.PersonTest&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::A70975C5-9D55-4AFA-BDD1-B7838C628011::net6.0::Person_Refactoring_Kata.DataProcessorTest&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=f219b019_002D02be_002D4ea7_002D960f_002D4bd2ed965fd6/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="PersonTest #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;

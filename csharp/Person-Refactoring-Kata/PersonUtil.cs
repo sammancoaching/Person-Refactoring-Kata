@@ -1,5 +1,3 @@
-using System.Diagnostics.SymbolStore;
-
 namespace Person_Refactoring_Kata;
 
 public class PersonUtil
@@ -8,7 +6,7 @@ public class PersonUtil
     {
         var pn = swedishPersonalNumber.Replace("-", "");
         if (pn.Length != 12)
-            throw new ArgumentOutOfRangeException( "personalNumber","a personal number should have length 12");
+            throw new ArgumentOutOfRangeException("personalNumber", "a personal number should have length 12");
         return true;
     }
 
@@ -21,7 +19,7 @@ public class PersonUtil
 
     public static bool ValidateRole(int role)
     {
-        if (role < 0 || role > 4) 
+        if (role < 0 || role > 4)
             throw new ArgumentOutOfRangeException("role", "valid role is between 0..3");
         return true;
     }
@@ -40,7 +38,7 @@ public class PersonUtil
         if (phoneNumber.StartsWith("00"))
             code = phoneNumber.Substring(2, 2);
         else if (phoneNumber.StartsWith("+"))
-            code = phoneNumber.Substring(1,2);
+            code = phoneNumber.Substring(1, 2);
         if (code != "")
             return "+" + code;
         return "";

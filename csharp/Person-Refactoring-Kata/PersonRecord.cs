@@ -1,6 +1,5 @@
 ﻿namespace Person_Refactoring_Kata;
 
-
 public class PersonRecord
 {
     public static int USER_ROLE_ADMIN = 0;
@@ -10,12 +9,11 @@ public class PersonRecord
     public int Role { get; }
     public string SwedishPersonalNumber { get; }
     public string PhoneNumber { get; }
-    
+
     public PersonRecord(int role, string swedishPersonalNumber, string phoneNumber)
     {
         Role = role;
         SwedishPersonalNumber = swedishPersonalNumber;
         PhoneNumber = phoneNumber;
     }
-    
 }
