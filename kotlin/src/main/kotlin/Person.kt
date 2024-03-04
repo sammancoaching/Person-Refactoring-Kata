@@ -1,60 +1,77 @@
 package sammancoaching
 
+import java.time.Year
+
 class Person(
-    role: Int,
-    swedishPersonalNumber: String,
-    phoneNumber: String
+    private val role: Role,
+    private val swedishPersonalNumber: SwedishPersonalNumber,
+    private val phoneNumber: PhoneNumber,
+    private val birthYear: Year
 ) {
-    private var role = 0
-    var swedishPersonalNumber: String? = null
-        private set
-    var phoneNumber: String
 
-    init {
-        setRole(role)
-        setSwedishPersonalNumber(swedishPersonalNumber)
-        this.phoneNumber = phoneNumber
-    }
-
-
-    fun setRole(role: Int) {
-        require(!(role < 0 || role > 4)) { "illegal role$role" }
-        this.role = role
-    }
-
-    fun setSwedishPersonalNumber(swedishPersonalNumber: String) {
-        var swedishPersonalNumber = swedishPersonalNumber
-        swedishPersonalNumber = swedishPersonalNumber.replace("-", "")
-        require(swedishPersonalNumber.length == 12) { "invalid personal number $swedishPersonalNumber" }
-        this.swedishPersonalNumber = swedishPersonalNumber
+    companion object {
+        fun createFromSwedishPersonalNumber(role: Role, swedishPersonalNumber: String, phoneNumber: String): Person {
+            return Person(
+                role,
+                SwedishPersonalNumber.of(swedishPersonalNumber),
+                PhoneNumber(phoneNumber),
+                SwedishPersonalNumber.parseYear(swedishPersonalNumber)
+            )
+        }
     }
 
     fun birthYear(): Int {
-        val year = swedishPersonalNumber!!.substring(0, 4)
-        return year.toInt()
+        return birthYear
     }
 
     fun countryCode(): String {
-        var code = ""
-        if (phoneNumber.startsWith("00")) {
-            code = phoneNumber.substring(2, 4)
-        }
-        else if (phoneNumber.startsWith("+")) {
-            code = phoneNumber.substring(1, 3)
-        }
-
-        if (code.isNotEmpty()) return  "+$code"
-        return ""
+        return phoneNumber.countryCode()
     }
 
     fun canDeleteUsers(): Boolean {
-        return role == USER_ROLE_MANAGER || role == USER_ROLE_ADMIN
+        return role.canDeleteUsers()
     }
 
-    companion object {
-        const val USER_ROLE_ADMIN = 0
-        const val USER_ROLE_ENGINEER = 1
-        const val USER_ROLE_MANAGER = 2
-        const val USER_ROLE_SALES = 3
+    enum class Role {
+        ADMIN,
+        ENGINEER,
+        MANAGER,
+        SALES;
+
+        fun canDeleteUsers(): Boolean {
+            return this == MANAGER || this == ADMIN
+        }
     }
+
+    data class PhoneNumber(val number: String) {
+        fun countryCode(): String {
+            var code = ""
+            if (number.startsWith("00")) {
+                code = number.substring(2, 4)
+            } else if (number.startsWith("+")) {
+                code = number.substring(1, 3)
+            }
+
+            if (code.isNotEmpty()) return "+$code"
+            return ""
+        }
+    }
+
+    data class SwedishPersonalNumber private constructor(val personalNumber: String) {
+        companion object {
+            fun parseYear(number: String): Year {
+                return Year.parse(parseNumber(number).substring(0, 4))
+            }
+            fun of(number: String): SwedishPersonalNumber {
+                return SwedishPersonalNumber(parseNumber(number))
+            }
+
+            private fun parseNumber(number: String): String {
+                val swedishPersonalNumber = number.replace("-", "")
+                require(swedishPersonalNumber.length == 12) { "invalid personal number $swedishPersonalNumber" }
+                return swedishPersonalNumber
+            }
+        }
+    }
+
 }
